@@ -40,13 +40,13 @@ if msgbox(folderPath & "îzâ∫ÇÃpptxì‡ÇÃÅh" & fromStr & "ÅhÇÅh" & toStr  & "ÅhÇ…í
     Next
 
     powerPoint.Quit
-    Set poworPoint = Nothing
+    Set powerPoint = Nothing
 end if
 
-Sub repSub(filePath, fromStr, toStr, poworPoint)
+Sub repSub(filePath, fromStr, toStr, powerPoint)
 On Error Resume Next
-  With poworPoint.Presentations.Open(filePath)
-  For Each myS In poworPoint.ActivePresentation.Slides
+  With powerPoint.Presentations.Open(filePath)
+  For Each myS In powerPoint.ActivePresentation.Slides
      For Each mySP In myS.Shapes
        mySP.TextFrame.TextRange = Replace(mySP.TextFrame.TextRange, fromStr, toStr)
      Next
