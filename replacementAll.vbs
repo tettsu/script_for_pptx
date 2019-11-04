@@ -1,39 +1,39 @@
-msgbox "PowerPoint‚ÍI—¹‚µ‚Ä‚©‚ç‘€ì‚ğs‚È‚Á‚Ä‰º‚³‚¢B"
+msgbox "PowerPointã¯çµ‚äº†ã—ã¦ã‹ã‚‰æ“ä½œã‚’è¡Œãªã£ã¦ä¸‹ã•ã„ã€‚"
 
 Dim folderPath
-folderPath = InputBox("ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B","title")
+folderPath = InputBox("ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚","title")
 
 Dim sysObj
 Set sysObj = CreateObject("Scripting.FileSystemObject")
 if sysObj.FolderExists(folderPath) = false then
-    msgbox "‘¶İ‚µ‚È‚¢ƒfƒBƒŒƒNƒgƒŠ‚Å‚·B"
+    msgbox "å­˜åœ¨ã—ãªã„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã™ã€‚"
     WScript.Quit
 end if
 
 Dim fromStr
 Dim toStr
 
-fromStr = InputBox("’uŠ·‚·‚éŒ³‚Ì•¶š—ñ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B","title")
+fromStr = InputBox("ç½®æ›ã™ã‚‹å…ƒã®æ–‡å­—åˆ—ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚","title")
 if fromStr = "" then
-    msgbox "‰½‚à“ü—Í‚ª–³‚©‚Á‚½‚Ì‚ÅI—¹‚µ‚Ü‚·B"
+    msgbox "ä½•ã‚‚å…¥åŠ›ãŒç„¡ã‹ã£ãŸã®ã§çµ‚äº†ã—ã¾ã™ã€‚"
     WScript.Quit
 end if
 
-toStr = InputBox("’uŠ·Œã‚Ì•¶š—ñ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B","title")
+toStr = InputBox("ç½®æ›å¾Œã®æ–‡å­—åˆ—ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚","title")
 
-if msgbox(folderPath & "ˆÈ‰º‚Ìƒpƒƒ|ƒtƒ@ƒCƒ‹‚ğ" & fromStr & "‚©‚ç" & toStr  & "‚É’uŠ·‚µ‚Ä‚à‚¢‚¢‚Å‚·‚©H",vbYesNo + vbQuestion) = vbYes then
+if msgbox(folderPath & "ä»¥ä¸‹ã®ãƒ‘ãƒ¯ãƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’" & fromStr & "ã‹ã‚‰" & toStr  & "ã«ç½®æ›ã—ã¦ã‚‚ã„ã„ã§ã™ã‹ï¼Ÿ",vbYesNo + vbQuestion) = vbYes then
 
     Dim poworPoint
     Set poworPoint = CreateObject("PowerPoint.Application")
     poworPoint.Visible = True
     Dim Target
 
-    'w’èƒtƒHƒ‹ƒ_‚Ì’†‚Ìƒtƒ@ƒCƒ‹
+    'æŒ‡å®šãƒ•ã‚©ãƒ«ãƒ€ã®ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«
     For Each oFile In sysObj.GetFolder(folderPath).files
      Target =  oFile.Name
-     'Šg’£q‚Ì”»•Ê
+     'æ‹¡å¼µå­ã®åˆ¤åˆ¥
       If LCase(sysObj.GetExtensionName(Target)) = "ppt" Or LCase(sysObj.GetExtensionName(Target)) = "pptx" Then
-       ''Target‚É‘Î‚·‚éˆ—
+       ''Targetã«å¯¾ã™ã‚‹å‡¦ç†
        Call repSub(folderPath & "\" & Target, fromStr,toStr, poworPoint)
       End If
     Next
