@@ -23,9 +23,6 @@ if msgbox(folderPath & "配下のpptx内のメタ情報を削除してよいですか？",vbYesNo + 
      Target =  oFile.Name
      '拡張子の判別
       If LCase(sysObj.GetExtensionName(Target)) = "ppt" Or LCase(sysObj.GetExtensionName(Target)) = "pptx" Then
-       ''Targetに対する処理
-       'Call repSub(folderPath & "\" & Target, powerPoint)
-        'powerPoint.Visible = True
         powerPoint.Presentations.Open(oFile)
         With powerPoint.ActivePresentation
             .RemoveDocumentInformation(99)
@@ -38,11 +35,3 @@ if msgbox(folderPath & "配下のpptx内のメタ情報を削除してよいですか？",vbYesNo + 
     powerPoint.Quit
     Set powerPoint = Nothing
 end if
-
-Sub repSub(filePath, powerPoint)
-On Error Resume Next
-  With powerPoint.ActivePresentations.Open(filePath)
-    powerPoint.ActivePresentation.RemoveDocumentInformation(99)
-    .Save
-  End With
-End Sub
