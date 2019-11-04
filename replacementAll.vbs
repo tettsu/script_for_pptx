@@ -1,19 +1,20 @@
 msgbox "PowerPoint‚ÍI—¹‚µ‚Ä‚©‚ç‘€ì‚ğs‚È‚Á‚Ä‰º‚³‚¢B"
 
 Dim folderPath
-folderPath = InputBox("ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B","title")
+folderPath = InputBox("ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B“ü—Í‚ª–³‚¢ê‡‚ÍAƒXƒNƒŠƒvƒg‚Ì‚ ‚éƒfƒBƒŒƒNƒgƒŠ‚ğ‘ÎÛ‚É‚µ‚Ü‚·B","title")
 
 Dim sysObj
 Set sysObj = CreateObject("Scripting.FileSystemObject")
 if sysObj.FolderExists(folderPath) = false then
-    msgbox "‘¶İ‚µ‚È‚¢ƒfƒBƒŒƒNƒgƒŠ‚Å‚·B"
-    WScript.Quit
+    dim fso
+    set fso = createObject("Scripting.FileSystemObject")
+    folderPath = fso.getParentFolderName(WScript.ScriptFullName)
 end if
 
 Dim fromStr
 Dim toStr
 
-fromStr = InputBox("’uŠ·‚·‚éŒ³‚Ì•¶š—ñ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B","title")
+fromStr = InputBox("’uŠ·‘ÎÛ‚Ì•¶š—ñ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B‰½‚à“ü—Í‚µ‚È‚¢‚ÆI—¹‚µ‚Ü‚·B","title")
 if fromStr = "" then
     msgbox "‰½‚à“ü—Í‚ª–³‚©‚Á‚½‚Ì‚ÅI—¹‚µ‚Ü‚·B"
     WScript.Quit
@@ -21,11 +22,11 @@ end if
 
 toStr = InputBox("’uŠ·Œã‚Ì•¶š—ñ‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B","title")
 
-if msgbox(folderPath & "ˆÈ‰º‚Ìƒpƒƒ|ƒtƒ@ƒCƒ‹‚ğ" & fromStr & "‚©‚ç" & toStr  & "‚É’uŠ·‚µ‚Ä‚à‚¢‚¢‚Å‚·‚©H",vbYesNo + vbQuestion) = vbYes then
+if msgbox(folderPath & "”z‰º‚Ìpptx“à‚Ìh" & fromStr & "h‚ğh" & toStr  & "h‚É’uŠ·‚µ‚Ä‚æ‚¢‚Å‚·‚©H‚È‚¨Aƒtƒ@ƒCƒ‹–¼‚Í‘ÎÛŠO‚Å‚·B",vbYesNo + vbQuestion) = vbYes then
 
-    Dim poworPoint
-    Set poworPoint = CreateObject("PowerPoint.Application")
-    poworPoint.Visible = True
+    Dim powerPoint
+    Set powerPoint = CreateObject("PowerPoint.Application")
+    powerPoint.Visible = True
     Dim Target
 
     'w’èƒtƒHƒ‹ƒ_‚Ì’†‚Ìƒtƒ@ƒCƒ‹
@@ -34,11 +35,11 @@ if msgbox(folderPath & "ˆÈ‰º‚Ìƒpƒƒ|ƒtƒ@ƒCƒ‹‚ğ" & fromStr & "‚©‚ç" & toStr  & "‚
      'Šg’£q‚Ì”»•Ê
       If LCase(sysObj.GetExtensionName(Target)) = "ppt" Or LCase(sysObj.GetExtensionName(Target)) = "pptx" Then
        ''Target‚É‘Î‚·‚éˆ—
-       Call repSub(folderPath & "\" & Target, fromStr,toStr, poworPoint)
+       Call repSub(folderPath & "\" & Target, fromStr,toStr, powerPoint)
       End If
     Next
 
-    poworPoint.Quit
+    powerPoint.Quit
     Set poworPoint = Nothing
 end if
 
