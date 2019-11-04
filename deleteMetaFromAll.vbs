@@ -11,38 +11,29 @@ if sysObj.FolderExists(folderPath) = false then
     folderPath = fso.getParentFolderName(WScript.ScriptFullName)
 end if
 
+if msgbox(folderPath & "配下のpptx内のメタ情報を削除してよいですか？",vbYesNo + vbQuestion) = vbYes then
 
+    Dim powerPoint
+    Set powerPoint = CreateObject("PowerPoint.Application")
+    powerPoint.Visible = True
+    Dim Target
 
+    '指定フォルダの中のファイル
+    For Each oFile In sysObj.GetFolder(folderPath).files
+     Target =  oFile.Name
+     '拡張子の判別
+      If LCase(sysObj.GetExtensionName(Target)) = "ppt" Or LCase(sysObj.GetExtensionName(Target)) = "pptx" Then
+       ''Targetに対する処理
+       Call repSub(folderPath & "\" & Target, powerPoint)
+      End If
+    Next
 
-Dim powerPoint
-Set powerPoint = CreateObject("PowerPoint.Application")
-powerPoint.Visible = True
-Dim Target
+    powerPoint.Quit
+    Set powerPoint = Nothing
+end if
 
-'指定フォルダの中のファイル
-For Each oFile In sysObj.GetFolder(folderPath).files
-  Target =  oFile.Name
-  '拡張子の判別
-  If LCase(sysObj.GetExtensionName(Target)) = "ppt" Or LCase(sysObj.GetExtensionName(Target)) = "pptx" Then
-    ''Targetに対する処理
-    Call repSub(folderPath & "\" & Target, fromStr,toStr, powerPoint)
-  End If
-Next
-
-powerPoint.Quit
-Set powerPoint = Nothing
-
-
-
-Sub repSub(filePath, fromStr, toStr, powerPoint)
+Sub repSub(filePath, powerPoint)
 On Error Resume Next
   With powerPoint.Presentations.Open(filePath)
-  For Each myS In powerPoint.ActivePresentation.Slides
-     For Each mySP In myS.Shapes
-       mySP.TextFrame.TextRange = Replace(mySP.TextFrame.TextRange, fromStr, toStr)
-     Next
-  Next
- .Save
- .Close
   End With
 End Sub
