@@ -5,6 +5,8 @@ path = InputBox("ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢B“ü—Í‚ª–³‚¢ê‡‚ÍAƒXƒNƒŠƒvƒ
 
 Dim so
 Set so = CreateObject("Scripting.FileSystemObject")
+
+'ƒfƒBƒŒƒNƒgƒŠ–³‚¢ê‡‚ÍƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğ‘ÎÛ‚É‚·‚é
 if so.FolderExists(path) = false then
     dim fso
     set fso = createObject("Scripting.FileSystemObject")
@@ -12,10 +14,8 @@ if so.FolderExists(path) = false then
 end if
 
 if msgbox(path & "”z‰º‚Ìpptx“à‚Ìƒƒ^î•ñ‚ğíœ‚µ‚Ä‚æ‚¢‚Å‚·‚©H", vbYesNo + vbQuestion) = vbYes then
-
     Dim powerPoint
     Set powerPoint = CreateObject("PowerPoint.Application")
-    powerPoint.Visible = True
     Dim target
 
     'w’èƒtƒHƒ‹ƒ_‚Ì’†‚Ìƒtƒ@ƒCƒ‹
