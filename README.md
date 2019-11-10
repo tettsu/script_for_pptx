@@ -8,7 +8,7 @@
 
 # 注意
 
-* "コメント"は消えるが、"ノート"は消えない
+"コメント"は消えるが、"ノート"は消えない
 
 # 参考
 
@@ -16,6 +16,6 @@
 
 https://docs.microsoft.com/ja-jp/office/vba/api/powerpoint.presentation.removedocumentinformation
 
-* PpRemoveDocInfoType 列挙 (PowerPoint)
+PpRemoveDocInfoType 列挙 (PowerPoint)
 
 https://docs.microsoft.com/ja-jp/office/vba/api/powerpoint.ppremovedocinfotype
